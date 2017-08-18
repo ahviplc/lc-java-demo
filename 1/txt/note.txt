@@ -4,6 +4,6 @@ src="https://staticlive.douyucdn.cn/common/share/play.swf?room_id=96291"
 quality="high" bgcolor="#000" wmode="window" 
 allowfullscreen="true" allowFullScreenInteractive="true" 
 type="application/x-shockwave-flash">
-lc lc
+lc lc2
 
 2017年8月18日11:46:51
