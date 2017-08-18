@@ -5,3 +5,5 @@ quality="high" bgcolor="#000" wmode="window"
 allowfullscreen="true" allowFullScreenInteractive="true" 
 type="application/x-shockwave-flash">
 lc lc
+
+2017年8月18日11:46:51
