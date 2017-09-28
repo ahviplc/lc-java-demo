@@ -17,5 +17,9 @@
 	<classpathentry kind="lib" path="taobaoLib/taobao-sdk-java-auto_1455552377940-20160607-source.jar"/>
 	<classpathentry kind="lib" path="taobaoLib/taobao-sdk-java-auto_1455552377940-20160607.jar"/>
 	<classpathentry kind="lib" path="taobaoLib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="mayiLib/alipay-sdk-java20170829142630-source.jar"/>
+	<classpathentry kind="lib" path="mayiLib/alipay-sdk-java20170829142630.jar"/>
+	<classpathentry kind="lib" path="mayiLib/commons-logging-1.1.1-sources.jar"/>
+	<classpathentry kind="lib" path="mayiLib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
