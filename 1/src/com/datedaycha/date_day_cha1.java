@@ -1,10 +1,15 @@
 package com.datedaycha;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+
+/*import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+*/
+
 
 /*
  * java 判断两个时间相差的天数
