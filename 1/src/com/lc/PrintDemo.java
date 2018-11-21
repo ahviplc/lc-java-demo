@@ -30,7 +30,14 @@ public class PrintDemo {
         // 打印pdf的一个方法，首先安装下PDFCreator软件
 		//D:\\PDFPDF\\20140908_图纸\\PDF文件\\
         try {
-            printFile("D:\\PDFPDF\\");
+            printFile("D:\\printDemoTest\\");//FormatTextUtil.java
+            
+            /**
+             *  在File类中
+             *  list()方法是返回某个目录下的所有文件和目录的文件名，返回的是String数组
+             *  listFiles()方法是返回某个目录下所有文件和目录的绝对路径，返回的是File数组
+             */
+            
         } catch (Exception e) {
             System.out.println("打印文件异常：" + e.getMessage());
             e.printStackTrace();
@@ -44,7 +51,7 @@ public class PrintDemo {
 	        for (File f : fies) {
 	            System.out.println("file " + f.getName());
 	            String fileExt = f.getName().substring(
-	                    f.getName().indexOf(".") + 1, f.getName().length());
+	                    f.getName().indexOf(".") + 1, f.getName().length());//获取文件 后缀 看是否为pdf文件
 	            if ("pdf".equalsIgnoreCase(fileExt)) {
 	                String filepath = path + File.separator + f.getName();
 	                File pdfFile = new File(filepath);
