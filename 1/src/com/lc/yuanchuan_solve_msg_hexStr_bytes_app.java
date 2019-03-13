@@ -1,15 +1,19 @@
 package com.lc;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 远传解析-报文解析过程测试
  * 16进制字符串与byte数组byte[]互转
+ *
  * @author LC
  * @dateTime 2019年3月7日10:46:56
+ * @updateTime 2019年3月13日11:30:21
  */
 public class yuanchuan_solve_msg_hexStr_bytes_app {
+
 
     /*
      * Convert byte[] to hex
@@ -36,7 +40,7 @@ public class yuanchuan_solve_msg_hexStr_bytes_app {
     }
 
     /**
-     * Convert hex string to byte[]
+     * Convert hex string to byte[] 十进制表示 7d 31 = 125 49
      *
      * @param hexString the hex string
      * @return byte[]
@@ -57,7 +61,7 @@ public class yuanchuan_solve_msg_hexStr_bytes_app {
     }
 
     /**
-     * 将16进制字符串转换为byte[]
+     * 将16进制字符串转换为byte[] 十进制表示 7d 31 = 125 49
      *
      * @param str
      * @return
@@ -112,7 +116,7 @@ public class yuanchuan_solve_msg_hexStr_bytes_app {
     /**
      * 接收报文翻译
      *
-     * @param str 可能包含7D的数据
+     * @param strList 可能包含7D的数据
      * @return 翻译结果字符串
      */
     public static List<String> decodingData(List<String> strList) {
@@ -138,24 +142,169 @@ public class yuanchuan_solve_msg_hexStr_bytes_app {
         return returnList;
     }
 
-    public static void main(String[] args) {
-        String string = "}1helloworld1LC";
-        byte[] bytes = string.getBytes();
-        System.out.println(bytesToHexString(bytes));// [7D 31 68 65 6C 6C 6F 77 6F
-        // 72 6C 64 31 4C 43 ]
-        // 7d3168656c6c6f776f726c64314c43
 
-        System.out.println(translate7dString("7d317d687d656c6c6f776f726c64314c43"));
+    /**
+     * java 16进制字符串转二进制（byte[]） 十进制表示 7d 31 = 125 49
+     *
+     * @param hex
+     * @return
+     */
+    public static byte[] hexStr2Byte(String hex) {
+        ByteBuffer bf = ByteBuffer.allocate(hex.length() / 2);
+        for (int i = 0; i < hex.length(); i++) {
+            String hexStr = hex.charAt(i) + "";
+            i++;
+            hexStr += hex.charAt(i);
+            byte b = (byte) Integer.parseInt(hexStr, 16);
+            bf.put(b);
+        }
+        return bf.array();
+    }
 
-        byte[] bb = hexStringToBytes("7d317d687d656c6c6f776f726c64314c43");
+    /**
+     * 16进制字符串转二进制
+     * 92H = 1001 0010B
+     * 按位解析
+     *
+     * @param hexStr
+     * @return
+     */
+    public static String hexStrVersionTo2B(String hexStr) {
 
-        System.out.println(bb);
-
-        byte[] cc = toBytes("7d317d687d656c6c6f776f726c64314c43");
-
-        System.out.println(cc);
-
+        // TODO Auto-generated method stub
+        String s = "";
+        for (int i = 0; i < hexStr.length(); i++) {
+            System.out.println(hexStr.charAt(i));
+            s += from16StrTo2Str(hexStr.charAt(i));
+        }
+        return s;
 
     }
+
+
+    /**
+     * 范围16进制str转为2进制str
+     * 例如：9—>1001  2->0010 H->1111
+     *
+     * @param charAt
+     * @return
+     */
+    private static String from16StrTo2Str(char charAt) {
+        // TODO Auto-generated method stub
+        switch (charAt) {
+            case '0':
+                return "0000";
+            case '1':
+                return "0001";
+            case '2':
+                return "0010";
+            case '3':
+                return "0011";
+            case '4':
+                return "0100";
+            case '5':
+                return "0101";
+            case '6':
+                return "0110";
+            case '7':
+                return "0111";
+            case '8':
+                return "1000";
+            case '9':
+                return "1001";
+            case 'A':
+                return "1010";
+            case 'B':
+                return "1011";
+            case 'C':
+                return "1100";
+            case 'D':
+                return "1101";
+            case 'E':
+                return "1110";
+            case 'F':
+                return "1111";
+
+        }
+        return null;
+    }
+
+    /**
+     * @param buf
+     * @return
+     * @description 将二进制转换成16进制
+     */
+    public static String parseByte2HexStr(byte buf[]) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < buf.length; i++) {
+            String hex = Integer.toHexString(buf[i] & 0xFF);
+            if (hex.length() == 1) {
+                hex = '0' + hex;
+            }
+            sb.append(hex.toUpperCase());
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * @param hexStr
+     * @return
+     * @description 将16进制转换为二进制  十进制表示 7d 31 = 125 49
+     */
+    public static byte[] parseHexStr2Byte(String hexStr) {
+        if (hexStr.length() < 1)
+            return null;
+        byte[] result = new byte[hexStr.length() / 2];
+        for (int i = 0; i < hexStr.length() / 2; i++) {
+            int high = Integer.parseInt(hexStr.substring(i * 2, i * 2 + 1), 16);
+            int low = Integer.parseInt(hexStr.substring(i * 2 + 1, i * 2 + 2), 16);
+            result[i] = (byte) (high * 16 + low);
+        }
+        return result;
+    }
+
+
+    public static void main(String[] args) {
+//        String string = "}1helloworld1LC";
+//        byte[] bytes = string.getBytes();
+//        System.out.println(bytesToHexString(bytes));// [7D 31 68 65 6C 6C 6F 77 6F
+//        // 72 6C 64 31 4C 43 ]
+//        // 7d3168656c6c6f776f726c64314c43
+//
+//        System.out.println(translate7dString("7d317d687d656c6c6f776f726c64314c43"));
+//
+//        byte[] bb = hexStringToBytes("7d317d687d656c6c6f776f726c64314c43");  //7d 31 = 125 49
+//
+//        System.out.println(bb);
+//
+//        byte[] cc = toBytes("7d317d687d656c6c6f776f726c64314c43"); //7d 31 = 125 49
+//
+//        System.out.println(cc);
+        byte[] bytes2Str = hexStr2Byte("7d31"); //7d 31 = 125 49
+        System.out.println(bytes2Str);
+
+        byte[] bytes2Str2 = parseHexStr2Byte("7d31"); //7d 31 = 125 49
+        System.out.println(bytes2Str2);
+
+        byte[] bbb = new byte[4];//初始化一个byte数组，长度为2;
+        //添加数据
+        bbb[0] = 12;
+        bbb[1] = 23;
+        bbb[2] = 125;
+        bbb[3] = 49;
+
+        String sss = parseByte2HexStr(bbb);//12 23 125 49->0C 17 7D 31
+        System.out.println(sss);
+
+        String aaa = hexStrVersionTo2B("92");
+        System.out.println(aaa);
+        System.out.println(hexStrVersionTo2B("0123"));
+        System.out.println(hexStrVersionTo2B("4567"));
+        System.out.println(hexStrVersionTo2B("89AB"));
+        System.out.println(hexStrVersionTo2B("CDEF"));
+
+    }
+
 
 }
