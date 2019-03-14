@@ -264,6 +264,110 @@ public class yuanchuan_solve_msg_hexStr_bytes_app {
         return result;
     }
 
+    /**
+     * 表状态msg解析,注释解析
+     * 8位：从头开始1-4：#0无外电，1外接电#         #0阀门无低电，1阀门低电#    #0无卡攻击，1卡攻击#    #0未剪线，1剪线#
+     * 5-8：#0远程阀开，1远程阀关#     #0无低电，1低电#           #0阀开，1阀关#          #0已开户，1未开户#
+     * 1000 0111
+     *
+     * @param stateStr
+     * @return
+     */
+    private static String analysisMeterMsgState(String stateStr) {
+
+        if (stateStr == null || stateStr.equals("")) {
+            System.out.println("方法名：analysisMeterMsgState(),无解析成的8位2进制,无法进行表状态msg解析!");
+            return null;
+        }
+
+        String okStr = "";
+        for (int i = 0; i < stateStr.length(); i++) {
+            //System.out.println(stateStr.charAt(i));
+            String charStr = String.valueOf(stateStr.charAt(i));
+            if (i == 0) {
+                if (charStr.equals("0")) {
+                    okStr += "无外电,";
+                } else if (charStr.equals("1")) {
+                    okStr += "外接电,";
+                } else {
+                    okStr += "无是否外接电状态,";
+                }
+            }
+
+            if (i == 1) {
+                if (charStr.equals("0")) {
+                    okStr += "阀门无低电,";
+                } else if (charStr.equals("1")) {
+                    okStr += "阀门低电,";
+                } else {
+                    okStr += "无阀门是否低电状态,";
+                }
+            }
+
+            if (i == 2) {
+                if (charStr.equals("0")) {
+                    okStr += "无卡攻击,";
+                } else if (charStr.equals("1")) {
+                    okStr += "卡攻击,";
+                } else {
+                    okStr += "无是否有卡攻击状态,";
+                }
+            }
+
+            if (i == 3) {
+                if (charStr.equals("0")) {
+                    okStr += "未剪线,";
+                } else if (charStr.equals("1")) {
+                    okStr += "剪线,";
+                } else {
+                    okStr += "无是否有剪线状态,";
+                }
+            }
+
+            if (i == 4) {
+                if (charStr.equals("0")) {
+                    okStr += "远程阀开,";
+                } else if (charStr.equals("1")) {
+                    okStr += "远程阀关,";
+                } else {
+                    okStr += "无远程阀开关状态,";
+                }
+            }
+
+            if (i == 5) {
+                if (charStr.equals("0")) {
+                    okStr += "无低电,";
+                } else if (charStr.equals("1")) {
+                    okStr += "低电,";
+                } else {
+                    okStr += "无是否低电状态,";
+                }
+            }
+
+            if (i == 6) {
+                if (charStr.equals("0")) {
+                    okStr += "阀开,";
+                } else if (charStr.equals("1")) {
+                    okStr += "阀关,";
+                } else {
+                    okStr += "无阀开关状态,";
+                }
+            }
+
+            if (i == 7) {
+                if (charStr.equals("0")) {
+                    okStr += "已开户";
+                } else if (charStr.equals("1")) {
+                    okStr += "未开户";
+                } else {
+                    okStr += "无是否开户状态";
+                }
+            }
+
+        }
+        return okStr;
+    }
+
 
     public static void main(String[] args) {
 //        String string = "}1helloworld1LC";
@@ -299,10 +403,43 @@ public class yuanchuan_solve_msg_hexStr_bytes_app {
 
         String aaa = hexStrVersionTo2B("92");
         System.out.println(aaa);
-        System.out.println(hexStrVersionTo2B("0123"));
-        System.out.println(hexStrVersionTo2B("4567"));
-        System.out.println(hexStrVersionTo2B("89AB"));
-        System.out.println(hexStrVersionTo2B("CDEF"));
+
+
+//        String aaa1 = hexStrVersionTo2B("83");
+//        System.out.println(aaa1);
+//        String aaa2 = hexStrVersionTo2B("8D");
+
+
+//        System.out.println(aaa2);
+//        System.out.println(aaa2.substring(0, 1));
+//        System.out.println(aaa2.substring(1, 2));
+//        System.out.println(aaa2.substring(2, 3));
+//        System.out.println(aaa2.substring(3, 4));
+//        System.out.println(aaa2.substring(4, 5));
+//        System.out.println(aaa2.substring(5, 6));
+//        System.out.println(aaa2.substring(6, 7));
+//        System.out.println(aaa2.substring(7));
+//
+//        String aaa3 = "12345678";
+//        System.out.println(aaa3);
+//        System.out.println(aaa3.substring(0, 1));
+//        System.out.println(aaa3.substring(1, 2));
+//        System.out.println(aaa3.substring(2, 3));
+//        System.out.println(aaa3.substring(3, 4));
+//        System.out.println(aaa3.substring(4, 5));
+//        System.out.println(aaa3.substring(5, 6));
+//        System.out.println(aaa3.substring(6, 7));
+//        System.out.println(aaa3.substring(7));
+
+        System.out.println(analysisMeterMsgState("10000111"));
+        System.out.println(analysisMeterMsgState("11001100"));
+
+
+//        System.out.println(hexStrVersionTo2B("0123"));
+//        System.out.println(hexStrVersionTo2B("4567"));
+//        System.out.println(hexStrVersionTo2B("89AB"));
+//        System.out.println(hexStrVersionTo2B("CDEF"));
+
 
     }
 
