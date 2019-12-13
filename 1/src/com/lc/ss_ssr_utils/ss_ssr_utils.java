@@ -126,5 +126,56 @@ public class ss_ssr_utils {
         System.out.println("password:" + password);//密码
         System.out.println("method:" + method);//加密
         System.out.println("===============================================================");
+
+        System.out.println("输出demo===============================================================");
+        /**
+         * ================================================================
+         * ssr解析data:139.162.56.125:17731:origin:aes-256-cfb:plain:ZjU1LmZ1bi0xMDA1OTAwMQ/?obfsparam=b2Jmc3BhcmFt&protoparam=cHJvdG9jb2xwYXJhbQ&remarks=cmVtYXJrcw&group=RnJlZVNTUi1wdWJsaWM
+         * ========================SSR解析结果============================
+         * ip:139.162.56.125
+         * port:17731
+         * password:f55.fun-10059001
+         * protocol:origin
+         * method:aes-256-cfb
+         * obfs:plain
+         * obfsparam:obfsparam
+         * protoparam:protocolparam
+         * remarks:remarks
+         * group:FreeSSR-public
+         * ss解析data:chacha20:doub.io/sszhfx/*doub.bid/sszhfx/*2987@64.137.229.154:2987
+         * ========================SS解析结果============================
+         * ip:64.137.229.154
+         * port:2987
+         * password:doub.io/sszhfx/*doub.bid/sszhfx/*2987
+         * method:chacha20
+         * ===============================================================
+         * ssr解析data:172.104.105.168:30707:origin:aes-256-cfb:plain:ZjUyWGlUdXV2MnNx/?obfsparam=&remarks=QHNzcg&group=QHNzcg
+         * ========================SSR解析结果============================
+         * ip:172.104.105.168
+         * port:30707
+         * password:f52XiTuuv2sq
+         * protocol:origin
+         * method:aes-256-cfb
+         * obfs:plain
+         * obfsparam:
+         * protoparam:
+         * remarks:@ssr
+         * group:@ssr
+         * ss解析data:rc4-md5:lncn.org v66@89.31.125.236:2015
+         * ========================SS解析结果============================
+         * ip:89.31.125.236
+         * port:2015
+         * password:lncn.org v66
+         * method:rc4-md5
+         * ===============================================================
+         * ss解析备注remarks:remarks
+         * ss解析data:rc4-md5:lncn.org v66@89.31.125.236:2015
+         * ========================SS解析结果============================
+         * ip:89.31.125.236
+         * port:2015
+         * password:lncn.org v66
+         * method:rc4-md5
+         * ===============================================================
+         */
     }
 }
