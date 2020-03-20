@@ -24,13 +24,24 @@ import java.util.concurrent.TimeUnit;
 public class TimeTaskTest5 {
     public static void main(String[] args) {
         //输出当前时间
+        System.out.println("----------------------------------------------------");
         System.out.println(DateUtil.currentStr());
         Runnable runnable = new Runnable() {
+
             public void run() {
                 // task to run goes here
                 System.out.println("Hello LC!!!");
                 //输出当前时间
                 System.out.println(DateUtil.currentStr());
+                //再延迟5秒
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Hello End !!!");
+                System.out.println(DateUtil.currentStr());
+                System.out.println("----------------------------------------------------");
             }
         };
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
