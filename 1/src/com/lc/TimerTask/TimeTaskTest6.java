@@ -27,10 +27,10 @@ public class TimeTaskTest6 {
                 try {
                     int[] s = new int[1];
                     System.out.println(DateUtil.currentStr() + " OK");
-                    System.out.println(s[1]); // 数组越界
+                    //System.out.println(s[1]); // 数组越界
                     throw new RuntimeException(".............................线程终止.............................");
                 } catch (Exception t) {
-                    System.out.println(DateUtil.currentStr() + " Error" + t.toString());
+                    System.out.println(DateUtil.currentStr() + " Error " + t.toString());
                 }
 
             }
