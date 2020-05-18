@@ -17,6 +17,15 @@ import java.util.concurrent.TimeUnit;
  * https://www.cnblogs.com/leeego-123/p/11493335.html
  * <p>
  * 有很多个任务，但希望每秒不超过X个，可用此类
+ *
+ *  ————————————————
+ * isShutDown：当调用shutdown()或shutdownNow()方法后返回为true。 
+ * isTerminated：当调用shutdown()方法后，并且所有提交的任务完成后返回为true;
+ * isTerminated：当调用shutdownNow()方法后，成功停止后返回为true;
+ * 如果线程池任务正常完成，都为false
+ * ————————————————
+ * Java线程池，isShutDown、isTerminated的作用与区别_java_坚持，让梦想闪耀！-CSDN博客
+ * https://blog.csdn.net/u010002184/article/details/79188403
  */
 public class GuavaRateLimiter2 {
 
