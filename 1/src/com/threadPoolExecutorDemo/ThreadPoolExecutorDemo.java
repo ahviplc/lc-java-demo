@@ -5,6 +5,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * JavaGuide/JavaConcurrencyAdvancedCommonInterviewQuestions.md at master · Snailclimb/JavaGuide
+ * https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.md#3-threadlocal
+ *
  * 编写测试程序，我们这里以阿里巴巴推荐的使用 ThreadPoolExecutor 构造函数自定义参数的方式来创建线程池。
  */
 public class ThreadPoolExecutorDemo {
