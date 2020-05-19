@@ -19,3 +19,12 @@ Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就�
 
 ### 三级标题
 
+# 
+ahviplc/lc-java-demo: LC练习Java的小demo,各种小demo！~LC 
+> https://github.com/ahviplc/lc-java-demo
+
+lc-java-demo: LC练习Java的小demo,各种小demo！~LC  
+> https://gitee.com/ahviplc/lc-java-demo
+
+### By LC
+
