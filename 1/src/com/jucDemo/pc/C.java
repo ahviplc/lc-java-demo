@@ -86,7 +86,7 @@ class Data3{ // 资源类 Lock
             while (number!=3){
                 condition3.await();
             }
-            System.out.println(Thread.currentThread().getName()+"=>BBBBBBBBB");
+            System.out.println(Thread.currentThread().getName()+"=>CCCCCCCC");
             // 唤醒，唤醒指定的人，c
             number = 1;
             condition1.signal();
