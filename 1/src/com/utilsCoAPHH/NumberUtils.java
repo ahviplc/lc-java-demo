@@ -15,21 +15,19 @@ public class NumberUtils {
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
             data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i+1), 16));
+                    + Character.digit(s.charAt(i + 1), 16));
         }
         return data;
     }
 
-
-    public static String binaryToHex(String number){
-        return  Integer.toHexString(Integer.valueOf(number,2));
+    public static String binaryToHex(String number) {
+        return Integer.toHexString(Integer.valueOf(number, 2));
     }
 
-
-    public static String hexToBinary(String number,Integer length){
+    public static String hexToBinary(String number, Integer length) {
         String binaryString = Integer.toBinaryString(Integer.valueOf(number, 16));
-        if(binaryString.length()<length){
-            binaryString=padLeft(binaryString, length);
+        if (binaryString.length() < length) {
+            binaryString = padLeft(binaryString, length);
         }
         return binaryString;
     }
@@ -76,16 +74,11 @@ public class NumberUtils {
         } else {
             return year + month + day + hour + minute + second;
         }
-
-
     }
-
-
-
-
 
     /**
      * 字符串左补0
+     *
      * @param str
      * @param strLength
      * @return String
@@ -105,6 +98,7 @@ public class NumberUtils {
 
     /**
      * 字符串右补0
+     *
      * @param str
      * @param strLength
      * @return String
@@ -122,10 +116,9 @@ public class NumberUtils {
     }
 
 
-    public static byte[] hexItr2Arr(String hexItr){
+    public static byte[] hexItr2Arr(String hexItr) {
         return HexUtil.decodeHex(hexItr);
     }
-
 
     /**
      * 将加密后的字节数组转换成字符串
@@ -133,46 +126,44 @@ public class NumberUtils {
      * @param b 字节数组
      * @return 字符串
      */
-    public  static String byteArrayToHexString(byte[] b) {
+    public static String byteArrayToHexString(byte[] b) {
         return Hex.encodeHexString(b);
-
     }
 
-    private static boolean isF(String hex){
-        int f=0;
-        for (int i=0;i<hex.length();i++){
-            if("f".equals(hex.substring(i,i+1 ))){
+    private static boolean isF(String hex) {
+        int f = 0;
+        for (int i = 0; i < hex.length(); i++) {
+            if ("f".equals(hex.substring(i, i + 1))) {
                 f++;
             }
         }
-        return f==hex.length();
+        return f == hex.length();
     }
 
 
-
-    public static BigDecimal hexToDecimal(String hex,int decimal){
-        if(hex.length()>=8&&isF(hex)){
+    public static BigDecimal hexToDecimal(String hex, int decimal) {
+        if (hex.length() >= 8 && isF(hex)) {
             return new BigDecimal(0);
         }
 
         long val = new BigInteger(hex, 16).longValue();
-        int devide=1;
-        for(int i=0;i<decimal;i++){
-            devide=devide*10;
+        int devide = 1;
+        for (int i = 0; i < decimal; i++) {
+            devide = devide * 10;
         }
         return new BigDecimal(val).setScale(decimal, BigDecimal.ROUND_DOWN).divide(new BigDecimal(devide).setScale(decimal, BigDecimal.ROUND_DOWN), BigDecimal.ROUND_DOWN);
     }
 
-    public static String decimalToHex(BigDecimal bigDecimal,int decimal){
-        int multi=1;
-        for(int i=0;i<decimal;i++){
-            multi=multi*10;
+    public static String decimalToHex(BigDecimal bigDecimal, int decimal) {
+        int multi = 1;
+        for (int i = 0; i < decimal; i++) {
+            multi = multi * 10;
         }
-        bigDecimal=bigDecimal.multiply(new BigDecimal(multi));
+        bigDecimal = bigDecimal.multiply(new BigDecimal(multi));
         return Integer.toHexString(bigDecimal.intValue());
     }
 
-    public static Integer hexToInt(String hex){
+    public static Integer hexToInt(String hex) {
         return Integer.parseInt(hex, 16);
     }
 
@@ -181,12 +172,10 @@ public class NumberUtils {
         StringBuffer sbu = new StringBuffer();
         char[] chars = value.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if(i != chars.length - 1)
-            {
-                sbu.append((int)chars[i]).append(",");
-            }
-            else {
-                sbu.append((int)chars[i]);
+            if (i != chars.length - 1) {
+                sbu.append((int) chars[i]).append(",");
+            } else {
+                sbu.append((int) chars[i]);
             }
         }
         return sbu.toString();

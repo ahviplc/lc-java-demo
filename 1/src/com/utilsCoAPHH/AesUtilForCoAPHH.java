@@ -106,8 +106,6 @@ public class AesUtilForCoAPHH {
                 realKey[i] = paddingChar;
             }
         }
-
         return realKey;
-
     }
 }

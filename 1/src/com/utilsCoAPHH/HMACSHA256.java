@@ -61,5 +61,4 @@ public class HMACSHA256 {
         }
         return hash;
     }
-
 }
