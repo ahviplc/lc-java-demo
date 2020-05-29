@@ -4,7 +4,7 @@ public class CoapForHHUtils {
 
     public final static String primary_key = NumberUtils.byteArrayToHexString(new byte[]{0X01, 0X02, 0X03, 0X04, 0X05, 0X06, 0X07, 0X08, 0X09, 0X0A, 0X0b, 0X0c, 0x0d, 0x0e, 0x0f, 0x10});
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String did = "1";
         String body = "68000100ab0141300120052716515400040001103131323532303032303431393030303530303030303030303030303030303030000100000100100000eb55d721e30d4f59fbe5c791f39d5fe9ffae000d00924c9870000000053836383136333034343230303036384d3533313100000000004d353331312d4d434d4830533033000000000000011b44e372866714d0e831188d7dba68a59e76de47b0530fd70a5736a7946cef4c5f3516";
         String openBody = "680001003C0288000116097FB062DF511D0A4B56E227609874AD040F602EC70ECA9F5E5EDE4B620A3809A8203D1AFB07161454ACC12EBD789C6A8416";
@@ -17,6 +17,18 @@ public class CoapForHHUtils {
         System.out.println(decryptData(did, "16097fb062df511d0a4b56e227609874"));
         // 消息序号开始到数据域(加密或认证)
         System.out.println(CRC_XModem("01413001" + "20052716515400040001103131323532303032303431393030303530303030303030303030303030303030000100000100100000eb55d721e30d4f59fbe5c791f39d5fe9ffae000d00924c9870000000053836383136333034343230303036384d3533313100000000004d353331312d4d434d483053303300000000000001" + "1b44e372866714d0e831188d7dba68a59e76de47b0530fd70a5736a7946cef4c"));
+        //HexAscii转String
+        System.out.println(HexAsciiToStringUtils.HexAsciiToString("383636393731303336343131353233")); // 866971036411523
+        System.out.println(NumberUtils.getDate(0)); // 200528215039
+        System.out.println(body.substring(14, 18)); // 3001 为功能码
+        System.out.println(body.substring(122, 154)); // eb55d721e30d4f59fbe5c791f39d5fe9 为randCode 通讯随机码
+        System.out.println(body.substring(180, 210)); // 383638313633303434323030303638
+        System.out.println(HexAsciiToStringUtils.HexAsciiToString(body.substring(180, 210))); // 868163044200068
+        byte[] bytesTemp = NumberUtils.HexStringTobyteArray("0102030405060708090a0b0c0d0e0f10");
+        System.out.println(bytesTemp); // [B@6ed3ccb2
+        System.out.println(NumberUtils.byteArrayToHexString(bytesTemp)); // 0102030405060708090a0b0c0d0e0f10
+        byte[] bytesTemp2 = new byte[]{0X01, 0X02, 0X03, 0X04, 0X05, 0X06, 0X07, 0X08, 0X09, 0X0A, 0X0b, 0X0c, 0x0d, 0x0e, 0x0f, 0x10};
+        System.out.println(NumberUtils.byteArrayToHexString(bytesTemp2)); // 0102030405060708090a0b0c0d0e0f10
     }
 
     //randCode 通讯随机码

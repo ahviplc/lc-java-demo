@@ -115,9 +115,24 @@ public class NumberUtils {
         return str;
     }
 
-
+    /**
+     * 将字符串转成字节数组
+     *
+     * @param hexItr
+     * @return
+     */
     public static byte[] hexItr2Arr(String hexItr) {
         return HexUtil.decodeHex(hexItr);
+    }
+
+    /**
+     * 将字符串转成字节数组2 和 上面方法 hexItr2Arr 一样的
+     *
+     * @param b 字节数组
+     * @return 字符串
+     */
+    public static byte[] HexStringTobyteArray(String hexItr) throws Exception {
+        return Hex.decodeHex(hexItr.toCharArray());
     }
 
     /**
