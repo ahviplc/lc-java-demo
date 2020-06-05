@@ -20,10 +20,23 @@ public class NumberUtils {
         return data;
     }
 
+    /**
+     * 二进制转16进制
+     *
+     * @param number
+     * @return
+     */
     public static String binaryToHex(String number) {
         return Integer.toHexString(Integer.valueOf(number, 2));
     }
 
+    /**
+     * 16进制转二进制
+     *
+     * @param number
+     * @param length
+     * @return
+     */
     public static String hexToBinary(String number, Integer length) {
         String binaryString = Integer.toBinaryString(Integer.valueOf(number, 16));
         if (binaryString.length() < length) {
@@ -79,8 +92,8 @@ public class NumberUtils {
     /**
      * 字符串左补0
      *
-     * @param str
-     * @param strLength
+     * @param str       要补零的值
+     * @param strLength 补完零之后的总长度
      * @return String
      */
     public static String padLeft(String str, int strLength) {
@@ -99,8 +112,8 @@ public class NumberUtils {
     /**
      * 字符串右补0
      *
-     * @param str
-     * @param strLength
+     * @param str       要补零的值
+     * @param strLength 补完零之后的总长度
      * @return String
      */
     public static String padRight(String str, int strLength) {
@@ -203,5 +216,36 @@ public class NumberUtils {
             sbu.append((char) Integer.parseInt(chars[i]));
         }
         return sbu.toString();
+    }
+
+    /**
+     * 字符串数转hex字符串 带转之前乘以multiplicationFactor 和转之后 前面补零 共截取cutLeng长度
+     *
+     * @param oldString            老值
+     * @param multiplicationFactor 乘法因子
+     * @param cutLength            截取左补零总长度
+     * @return 处理好的值
+     * <p>
+     * 输出示例:
+     * System.out.println(NumberUtils.parseStringToHexString("520","1",8)); // 00000208 十六进制对应十进制为:520
+     * System.out.println(NumberUtils.parseStringToHexString("520","100",8)); // 0000cb20 十六进制对应十进制为:52000
+     * System.out.println(NumberUtils.parseStringToHexString("520","100",8)); // 0000cb20 十六进制对应十进制为:52000
+     * System.out.println(NumberUtils.parseStringToHexString("100.11","100",8)); // 0000271b 十六进制对应十进制为:10011
+     * System.out.println(NumberUtils.parseStringToHexString("200.66","1000",8)); // 00030fd4 十六进制对应十进制为:200660
+     * System.out.println(NumberUtils.parseStringToHexString("100","1",4)); // 0064 十六进制对应十进制为:100
+     * System.out.println(NumberUtils.parseStringToHexString("255","1",4)); // 00ff 十六进制对应十进制为:255
+     */
+
+    public static String parseStringToHexString(String oldString, String multiplicationFactor, int cutLength) {
+        // 首先将oldString和乘法因子转成bd
+        BigDecimal oldStringBD = new BigDecimal(oldString);
+        BigDecimal multiplicationFactorBD = new BigDecimal(multiplicationFactor);
+        // 将oldStringBD和multiplicationFactorBD相乘
+        BigDecimal multiplyBD = oldStringBD.multiply(multiplicationFactorBD);
+        // 将multiplyBD转成16进制
+        String multiplyBDHexString = Long.toString(multiplyBD.longValue(), 16);
+        // 将 multiplyBDHex根据cutLength左补零
+        String realString = padLeft(multiplyBDHexString, cutLength);
+        return realString;
     }
 }

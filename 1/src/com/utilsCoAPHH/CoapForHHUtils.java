@@ -34,6 +34,20 @@ public class CoapForHHUtils {
         System.out.println(decryptData(did, "8f05ee23f6d1a0acbd0226178e6d8aa2", "c19ba2d55d4495ccc0c8863e3ea3d78bfd926f3a0c2fecefb6d9f2ac2288ec912d3803a5ee7df8eb2e008bdc905675942d3803a5ee7df8eb2e008bdc905675942d3803a5ee7df8eb2e008bdc905675942d3803a5ee7df8eb2e008bdc905675942d3803a5ee7df8eb2e008bdc9056759456a6f7a29105a0abf5cef5a5d8a0982fe929a0e08a578c4b4161e3a9e4c9ac5dfe28a1cbf09d14b25df25cae61be1dd4"));
         // 加密3003 20060114510400000000000100000000000016cb6100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000181c00200000138800000000000000000000000000000000000000000b0b0b0b0b0b0b0b0b0b0b
         System.out.println(decryptData(did, "690666a6cdd69bcf963ad96ac1f915f5", "5737efce287782e9216c1182abdc7e7dcbbc4e555ec367dc7d71eb4146964201cf72e0b4913eb9dd45957fca1dbe3f6fcf72e0b4913eb9dd45957fca1dbe3f6fcf72e0b4913eb9dd45957fca1dbe3f6fcf72e0b4913eb9dd45957fca1dbe3f6fcf72e0b4913eb9dd45957fca1dbe3f6feccf762d32c4424ae4acfa06b865ab817766e053bcb4c8c6bf768cf997f520249733b0ee0dfdd63bea8fe576e1db3258"));
+        // 其他
+        System.out.println(NumberUtils.padLeft("5", 8)); // 00000005
+        System.out.println(NumberUtils.padLeft("20", 4)); // 0020
+        System.out.println(NumberUtils.padRight("5", 5)); // 50000
+        System.out.println(NumberUtils.padRight("20", 5)); // 20000
+        System.out.println(NumberUtils.binaryToHex("1111")); // f
+        System.out.println(NumberUtils.hexToBinary("16", 8)); // 00010110
+        System.out.println(NumberUtils.parseStringToHexString("520", "1", 8)); // 00000208 十六进制对应十进制为:520
+        System.out.println(NumberUtils.parseStringToHexString("520", "100", 8)); // 0000cb20 十六进制对应十进制为:52000
+        System.out.println(NumberUtils.parseStringToHexString("520", "100", 8)); // 0000cb20 十六进制对应十进制为:52000
+        System.out.println(NumberUtils.parseStringToHexString("100.11", "100", 8)); // 0000271b 十六进制对应十进制为:10011
+        System.out.println(NumberUtils.parseStringToHexString("200.66", "1000", 8)); // 00030fd4 十六进制对应十进制为:200660
+        System.out.println(NumberUtils.parseStringToHexString("100", "1", 4)); // 0064 十六进制对应十进制为:100
+        System.out.println(NumberUtils.parseStringToHexString("255", "1", 4)); // 00ff 十六进制对应十进制为:255
     }
 
     //randCode 通讯随机码
