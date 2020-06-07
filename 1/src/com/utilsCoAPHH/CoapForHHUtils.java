@@ -1,5 +1,7 @@
 package com.utilsCoAPHH;
 
+import cn.hutool.core.lang.Console;
+
 public class CoapForHHUtils {
 
     public final static String primary_key = NumberUtils.byteArrayToHexString(new byte[]{0X01, 0X02, 0X03, 0X04, 0X05, 0X06, 0X07, 0X08, 0X09, 0X0A, 0X0b, 0X0c, 0x0d, 0x0e, 0x0f, 0x10});
@@ -48,6 +50,11 @@ public class CoapForHHUtils {
         System.out.println(NumberUtils.parseStringToHexString("200.66", "1000", 8)); // 00030fd4 十六进制对应十进制为:200660
         System.out.println(NumberUtils.parseStringToHexString("100", "1", 4)); // 0064 十六进制对应十进制为:100
         System.out.println(NumberUtils.parseStringToHexString("255", "1", 4)); // 00ff 十六进制对应十进制为:255
+        Console.print("{}", 123);
+        Console.print("{},{}M{}", 123, 456, 789, 0);
+        Console.log("================================================");
+        Console.log("{}", 123);
+        Console.log("{},{}M{}", 123, 456, 789, 0);
     }
 
     //randCode 通讯随机码
