@@ -56,7 +56,7 @@ public class hutoolMainApp {
         date.toString();
         Console.log(lines);
 
-        File[] ls = FileUtil.ls("D:\\DevelopSoftKu\\ideaIU-2019.3.win\\#CodeKu");
+        File[] ls = FileUtil.ls("D:");
         System.out.println(ls.length);
         for (File file : ls) {
             System.out.println(file.getName());
