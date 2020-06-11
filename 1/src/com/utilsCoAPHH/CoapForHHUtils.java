@@ -55,6 +55,90 @@ public class CoapForHHUtils {
         Console.log("================================================");
         Console.log("{}", 123);
         Console.log("{},{}M{}", 123, 456, 789, 0);
+        System.out.println(DecToHexWithPositiveNegative("-100.11"));
+        System.out.println(DecToHexWithPositiveNegative("100.11"));
+        System.out.println(DecToHexWithPositiveNegative("100.5"));
+        System.out.println(DecToHexWithPositiveNegative("100.50"));
+        System.out.println(DecToHexWithPositiveNegative("100"));
+        System.out.println(Integer.parseInt("100", 8)); // 表示将可以理解为双引号里的100是个八进制的数，也就是二进制‭01000000‬，转化为十进制就是64 转成16进制是40
+        System.out.println(Integer.parseInt("12", 8)); // 表示将可以理解为双引号里的12是个八进制的数，也就是二进制1010，转化为十进制就是10 转成16进制是A
+    }
+
+    /**
+     * 十进制小数(2为小数) 转 【4字节 hex（整数） 前面不足8个字符补零】 + 【1字节hex(小数) 前面不足2个字符补零】
+     *
+     * @param oldValue
+     * @return
+     */
+    public static String DecToHexWithPositiveNegative(String oldValue) {
+        String[] strArrStrings = null;
+        // 判断传进来的是不是小数
+        if (oldValue.contains(".")) {
+            strArrStrings = oldValue.split("\\.");
+        } else { // 不是小数 补 【。00】
+            oldValue = oldValue + ".00";
+            strArrStrings = oldValue.split("\\.");
+        }
+
+        // 整数部分
+        String positiveTemp = "";
+        // 小数部分
+        String negativeTemp = "";
+
+//        if (strArrStrings.length != 2) {
+//            return "";
+//        }
+
+        // 正数部分
+        positiveTemp = strArrStrings[0];
+        // 将正数部分转成int
+        int intpositiveTemp = Integer.parseInt(positiveTemp);
+        //判断正负数
+        if (intpositiveTemp < 0) {
+            //如果是负数的话转成正数
+            positiveTemp = String.valueOf(Math.abs(Integer.parseInt(strArrStrings[0])));
+            // 十进制转成二进制
+            positiveTemp = Integer.toBinaryString(Integer.valueOf(positiveTemp));
+            // 二进制 总长度32 前面补零操作
+            positiveTemp = "00000000000000000000000000000000" + positiveTemp;
+            positiveTemp = positiveTemp.substring(positiveTemp.length() - 32);
+            //因为值为负数把小数部分最高位设置为1
+            positiveTemp = "1" + positiveTemp.substring(1);
+            //将最高位设置成1的 转成10进制 再转成16进制
+            positiveTemp = Long.toHexString(Long.valueOf(positiveTemp, 2));
+            if (positiveTemp.length() != 8) {
+                positiveTemp = "00000000".substring(0, 8 - positiveTemp.length()) + positiveTemp;
+            }
+            // 小数部分
+            negativeTemp = strArrStrings[1];
+            // 这部分补零 是小数不是2为小数 通过后面补零 补成2为小数
+            if (negativeTemp.length() != 2) {
+                negativeTemp = negativeTemp + "00".substring(0, 2 - negativeTemp.length());
+            }
+            // 将10进制小数部分转成16进制
+            negativeTemp = Long.toHexString(Long.parseLong(negativeTemp));
+            if (negativeTemp.length() != 2) {
+                negativeTemp = "00".substring(0, 2 - negativeTemp.length()) + negativeTemp;
+            }
+        } else {
+            // 整数部分 int类型整数部分 正数 转成16进制
+            positiveTemp = Long.toHexString(Long.parseLong(positiveTemp));
+            if (positiveTemp.length() != 8) {
+                positiveTemp = "00000000".substring(0, 8 - positiveTemp.length()) + positiveTemp;
+            }
+            // 小数部分
+            negativeTemp = strArrStrings[1];
+            // 这部分补零 是小数不是2为小数 通过后面补零 补成2为小数
+            if (negativeTemp.length() != 2) {
+                negativeTemp = negativeTemp + "00".substring(0, 2 - negativeTemp.length());
+            }
+            // 小数部分 10进制转成16进制
+            negativeTemp = Long.toHexString(Long.parseLong(negativeTemp));
+            if (negativeTemp.length() != 2) {
+                negativeTemp = "00".substring(0, 2 - negativeTemp.length()) + negativeTemp;
+            }
+        }
+        return positiveTemp + negativeTemp;
     }
 
     //randCode 通讯随机码
