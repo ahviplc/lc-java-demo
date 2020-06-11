@@ -1,0 +1,8 @@
+# Default ignored files
+# bin
+# bin ignore
+1/bin/
+
+#IDEA
+# idea ignore
+1/.idea/
