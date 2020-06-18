@@ -14,6 +14,8 @@ public class myToolsTest {
         System.out.println(UStringUtil.toLower("LC"));
         UConsole.log(UStringUtil.padPre("1", 8, "0")); // 00000001
         UConsole.log(UStringUtil.padAfter("1", 8, "0")); // 10000000
+        UConsole.log(UStringUtil.padEnd("1", 8, '0')); // 10000000
+        UConsole.log(UStringUtil.padEnd("1", 8, "0".charAt(0))); // 10000000
 
         System.out.println(UDateUtil.getTimeStamp());
         System.out.println(UDateUtil.getNowDate_EN());
