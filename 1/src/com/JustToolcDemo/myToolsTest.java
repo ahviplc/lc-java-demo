@@ -12,6 +12,8 @@ public class myToolsTest {
     public static void main(String[] args) {
         System.out.println(UStringUtil.toUpper("lc"));
         System.out.println(UStringUtil.toLower("LC"));
+        UConsole.log(UStringUtil.padPre("1", 8, "0")); // 00000001
+        UConsole.log(UStringUtil.padAfter("1", 8, "0")); // 10000000
 
         System.out.println(UDateUtil.getTimeStamp());
         System.out.println(UDateUtil.getNowDate_EN());
@@ -42,7 +44,5 @@ public class myToolsTest {
         UConsole.log(UNumberUtil.sub(522.3344, 1)); // 521.3344
         UConsole.log(UNumberUtil.mul(100, 5.21)); // 521.0
         UConsole.log(UNumberUtil.div(100, 3)); // 33.3333333333
-
-
     }
 }
