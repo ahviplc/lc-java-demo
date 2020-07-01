@@ -1,7 +1,9 @@
 package com.JustToolcDemo;
 
 import com.lc.core.StrFormatter;
+import com.lc.core.cache.singleCache.UCache;
 import com.lc.lang.UConsole;
+import com.lc.utils.UCacheUtil;
 import com.lc.utils.UDateUtil;
 import com.lc.utils.UNumberUtil;
 import com.lc.utils.UStringUtil;
@@ -46,5 +48,14 @@ public class myToolsTest {
         UConsole.log(UNumberUtil.sub(522.3344, 1)); // 521.3344
         UConsole.log(UNumberUtil.mul(100, 5.21)); // 521.0
         UConsole.log(UNumberUtil.div(100, 3)); // 33.3333333333
+
+        // 单例缓存
+        UConsole.log("--------------------------------------------");
+        UCache singleCache = UCacheUtil.getSingleCache();
+        singleCache.putCache("test", "test1", 0);
+        UConsole.log(singleCache.isTimeOut("test"));
+        UConsole.log(singleCache.getAllKeys());
+        UConsole.log(singleCache.getCacheDataByKey("test").toString());
+        UConsole.log("--------------------------------------------");
     }
 }
