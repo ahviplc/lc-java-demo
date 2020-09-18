@@ -1,6 +1,7 @@
 package com.guavaDemo;
 
 import com.google.common.util.concurrent.RateLimiter;
+import com.lc.utils.UDateUtil;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -37,9 +38,9 @@ public class GuavaRateLimiter {
                 public void run() {
                     //如果获得令牌指令，则执行业务逻辑
                     if (resourceRateLimiter.get("order").tryAcquire(10, TimeUnit.MICROSECONDS)) {
-                        System.out.println("执行业务逻辑");
+                        System.out.println(UDateUtil.currentStr() + " 执行业务逻辑");
                     } else {
-                        System.out.println("限流");
+                        System.out.println(UDateUtil.currentStr() + " 限流");
                     }
                 }
             }).start();
