@@ -10,10 +10,10 @@ import cn.hutool.core.lang.Dict;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.core.swing.clipboard.ClipboardUtil;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.core.util.RuntimeUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.thread.ConcurrencyTester;
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.core.util.*;
+import cn.hutool.extra.emoji.EmojiUtil;
 import cn.hutool.extra.tokenizer.Result;
 import cn.hutool.extra.tokenizer.TokenizerEngine;
 import cn.hutool.extra.tokenizer.TokenizerUtil;
@@ -26,6 +26,7 @@ import com.jucDemo.stream.User2;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Iterator;
+import java.util.List;
 
 import static cn.hutool.core.util.NumberUtil.round;
 
@@ -130,5 +131,33 @@ public class hutoolMainApp {
         System.out.println(SystemUtil.getRuntimeInfo());
         System.out.println(SystemUtil.getOsInfo());
         Console.log(lines);
+
+        // CollUtil
+        String[] col = new String[]{"a", "b", "c", "d", "e"};
+        List<String> colList = CollUtil.newArrayList(col);
+        String str = CollUtil.join(colList, "#");
+        Console.log(str); // a#b#c#d#e
+        // 判断指定集合是否包含指定值
+        System.out.println(CollUtil.contains(colList, "a2")); // true
+        System.out.println(CollUtil.contains(colList, "a2")); // false
+
+
+//        // 高并发测试-ConcurrencyTester
+//        ConcurrencyTester tester = ThreadUtil.concurrencyTest(100, () -> {
+//            // 测试的逻辑内容
+//            long delay = RandomUtil.randomLong(100, 1000);
+//            ThreadUtil.sleep(delay);
+//            Console.log("{} test finished, delay: {}", Thread.currentThread().getName(), delay);
+//        });
+//
+//        // 获取总的执行时间，单位毫秒
+//        Console.log(tester.getInterval()); // 1004 毫秒
+
+//        // EmojiUtil 需要 https://github.com/vdurmont/emoji-java
+//        String alias = EmojiUtil.toAlias("😄");//:smile:
+//        Console.log(alias);
+//
+//        String emoji = EmojiUtil.toUnicode(":smile:");//😄
+//        Console.log(emoji);
     }
 }
