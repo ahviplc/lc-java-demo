@@ -34,7 +34,7 @@ public class TcpServerSocketTest {
          * @param host      监听地址
          * @param port        监听端口
          * @param idleInterval    空闲事件触发时间, 单位: 秒
-         * @param readTimeout   超时时间, 单位: 毫秒
+         * @param readTimeout   超时时间, 单位: 毫秒 根据实际业务需求 调整此时间
          * @param sendTimeout 发超时时间, 单位: 毫秒
          * @throws IOException    异常
          */
