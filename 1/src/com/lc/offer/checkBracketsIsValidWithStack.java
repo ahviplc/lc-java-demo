@@ -19,6 +19,9 @@ import java.util.Stack;
  * <p>
  * 首先我们将括号间的对应规则存放在 Map 中，这一点应该毋容置疑；
  * 创建一个栈。遍历字符串，如果字符是左括号就直接加入stack中，否则将stack 的栈顶元素与这个括号做比较，如果不相等就直接返回 false。遍历结束，如果stack为空，返回 true。
+ *
+ * JavaGuide - 线性数据结构?id=_322-检查符号是否成对出现
+ * https://snailclimb.gitee.io/javaguide/#/docs/dataStructures-algorithms/data-structure/线性数据结构?id=_322-检查符号是否成对出现
  */
 public class checkBracketsIsValidWithStack {
 	// isValid

@@ -8,6 +8,9 @@ import java.util.Arrays;
  * 下面我们使用数组来实现一个栈，并且这个栈具有push()、pop()（返回栈顶元素并出栈）、peek() （返回栈顶元素不出栈）、isEmpty()、size()这些基本的方法
  * <p>
  * 提示：每次入栈之前先判断栈的容量是否够用，如果不够用就用Arrays.copyOf()进行扩容；a
+ *
+ * javaguide - 线性数据结构?id=_33-栈的实现
+ * https://snailclimb.gitee.io/javaguide/#/docs/dataStructures-algorithms/data-structure/线性数据结构?id=_33-栈的实现
  */
 public class MyStack {
 	private int[] storage;//存放栈中元素的数组
