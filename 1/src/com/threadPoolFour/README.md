@@ -2,6 +2,8 @@
 
 > Executors 启动的 四种线程池 都是 默认的 什么值？
 
+> shutdown()等方法的那些事 请去 1/src/com/threadPoolFour/threeScheduled.java 查看
+
 ```java
 class Demo{
 	

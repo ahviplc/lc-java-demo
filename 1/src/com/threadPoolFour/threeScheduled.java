@@ -33,11 +33,39 @@ public class threeScheduled {
 		// 核心线程数 自定义 6个
 		ExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(6);
 		Console.log("{} => {}", DateUtil.now(), Thread.currentThread().getName());
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			// 核心线程数 1个
 			singleThreadScheduledExecutor.execute(new MyRunnableFour());
 			// 核心线程数 自定义 6个
 			// scheduledThreadPool.execute(new MyRunnableFour());
 		}
+
+		// 执行完毕
+		// 关闭线程池
+		// isShutdown
+		// 如果此执行程序已关闭，则返回true 。
+		// 返回：如果此执行程序已关闭，则为true
+		Console.log("{} isShutdown =>前 {}", DateUtil.now(), singleThreadScheduledExecutor.isShutdown());
+		Console.log("{} isTerminated =>前 {}", DateUtil.now(), singleThreadScheduledExecutor.isTerminated());
+		// 只是告诉 我想结束了 但是 要执行的任务会继续执行
+		// shutdown()
+		// 启动有序关闭，其中执行先前提交的任务，但不会接受新任务。 如果已经关闭，调用没有额外的效果。
+		// 此方法不等待先前提交的任务完成执行。 使用awaitTermination来做到这一点。
+		// 抛出：SecurityException – 如果安全管理器存在并且关闭此 ExecutorService 可能会操纵调用者不允许修改的线程，因为它不持有RuntimePermission ("modifyThread") ，或者安全管理器的checkAccess方法拒绝访问。
+		singleThreadScheduledExecutor.shutdown();
+		Console.log("{} isShutdown =>后 {}", DateUtil.now(), singleThreadScheduledExecutor.isShutdown());
+		// isTerminated 会在任务都完全处理完成了 才会为true
+		// 如果关闭后所有任务都已完成，则返回true 。 请注意，除非先调用shutdown或shutdownNow ，否则isTerminated永远不会为true 。
+		// 返回：如果关闭后所有任务都已完成，则为true
+		Console.log("{} isTerminated =>后 {}", DateUtil.now(), singleThreadScheduledExecutor.isTerminated());
+
+		Thread.sleep(3000);
+
+		//
+		// Java中使用isTerminated()函数判断线程池是否结束
+		// 当需要用到isTerminated()函数判断线程池中的所有线程是否执行完毕时候，不能直接使用该函数，必须在shutdown()方法关闭线程池之后才能使用，否则isTerminated()永不为TRUE，线程将一直阻塞在该判断的地方，导致程序最终崩溃
+		Console.log("{} isTerminated =>3秒后 {}", DateUtil.now(), singleThreadScheduledExecutor.isTerminated());
+		// 关闭线程池 立马
+		// singleThreadScheduledExecutor.shutdownNow();
 	}
 }
