@@ -324,12 +324,9 @@
         <CLASSES>
           <root url="jar://$MODULE_DIR$/coAPLib/bcprov-jdk15on-1.65.jar!/" />
           <root url="jar://$MODULE_DIR$/coAPLib/commons-codec-1.9.jar!/" />
-          <root url="jar://$MODULE_DIR$/coAPLib/hutool-all-5.3.7.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/coAPLib/hutool-all-5.3.7-sources.jar!/" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -343,5 +340,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="lombok-1.18.20" level="project" />
+    <orderEntry type="library" name="hutool-all-5.7.6" level="project" />
   </component>
 </module>

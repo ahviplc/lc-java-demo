@@ -1,5 +1,6 @@
 package com.hutoolDemo;
 
+import cn.hutool.Hutool;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.ChineseDate;
 import cn.hutool.core.date.DateTime;
@@ -159,5 +160,8 @@ public class hutoolMainApp {
 //
 //        String emoji = EmojiUtil.toUnicode(":smile:");//😄
 //        Console.log(emoji);
+
+        // 其他
+        Hutool.printAllUtils();
     }
 }

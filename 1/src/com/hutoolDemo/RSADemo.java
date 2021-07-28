@@ -138,5 +138,6 @@ public class RSADemo {
 		String sha1Hex2 = DigestUtil.sha1Hex(IoUtil.toStream(testStr, CharsetUtil.CHARSET_UTF_8));
 		Assert.assertEquals("ecabf586cef0d3b11c56549433ad50b81110a836", sha1Hex2);
 		Assert.assertEquals(sha1Hex3, sha1Hex1);
+
 	}
 }
